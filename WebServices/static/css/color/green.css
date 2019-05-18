@@ -38,6 +38,7 @@ VERSION : 1.1
 {
     color:#fff;
 }
+
 .black-background
 {
     background-color:#000;
@@ -46,6 +47,11 @@ VERSION : 1.1
 .white-background
 {
     background-color:#fff;
+}
+
+.rose-background
+{
+    background-color:#ff0080;
 }
 
 .grey

@@ -10,7 +10,7 @@
 	
 	<!-- [ FONT-AWESOME ICON ] 
         =========================================================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'library/font-awesome-4.3.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'library/fontawesome-5.8.2/css/all.css' %}">
 
 	<!-- [ PLUGIN STYLESHEET ]
         =========================================================================================================================-->
@@ -123,13 +123,21 @@
   
   <section class="mobile-app theme_background_color" id="feature">
       <div class="container">
-            <div class="row text-center">
+            <div class="row text-center" style="color: #000;">
                 <table
                 id='dataframe'
                 data-toggle="table"
+                data-height="800"
+                data-locale="es-CL"
                 data-pagination="true"
-                data-search="true">
-                    <thead style="background-color: #03591e">
+                data-search="true"
+                data-page-size="30"
+                data-show-columns="true"
+                data-buttons-class="secondary"
+                data-icon-size="lg"
+                data-icons-prefix="fa"
+                style="color: #fff;">
+                    <thead style="background-color: #03591e; color: #fff !important;">
                         <tr>
                             {% for name in data_frame.columns %}
                                 <th data-sortable="true" data-field={{ name }}>{{ name }}</th>
@@ -714,7 +722,7 @@
 						</div>
 						<div class="footer-social-icons col-md-12 text-center">
 							<ul>
-								<li><a href="https://github.com/LadyTrejos/WebService" target="_blank"><i class="fa fa-github"></i></a></li>
+								<li><a href="https://github.com/LadyTrejos/WebService" target="_blank"><i class="fab fa-github"></i></a></li>
 							</ul>
 						</div>
 					</div>
@@ -742,10 +750,11 @@
 	<!-- [ DEFAULT SCRIPT ] -->
 	<script src="{% static 'library/modernizr.custom.97074.js' %}"></script>
 	<script src="{% static 'library/jquery-1.11.3.min.js' %}"></script>
-        <script src="{% static 'library/bootstrap/js/bootstrap.js' %}"></script>
+    <script src="{% static 'library/bootstrap/js/bootstrap.js' %}"></script>
 	<script type="text/javascript" src="{%static 'js/jquery.easing.1.3.js' %}"></script>
-        <script src="{% static 'library/vegas/vegas.min.js' %}"></script>
+    <script src="{% static 'library/vegas/vegas.min.js' %}"></script>
     <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table-locale-all.min.js"></script>
 	
     <!-- [ PLUGIN SCRIPT ] -->    
 	<script src="{% static 'js/plugins.js' %}"></script>
@@ -754,8 +763,9 @@
 	<script src="{% static 'js/scrollreveal.js' %}"></script>
     <script>
         $('#dataframe').bootstrapTable({
-            data: {{ json|safe }},
-            classes: 'table table-bordered table-sm',
+            "data": {{ json|safe }},
+            "classes": 'table table-bordered table-sm',
+            "icons":{columns:'fa-th-list'},
         })
     </script>
     

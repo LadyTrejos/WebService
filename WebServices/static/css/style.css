@@ -689,6 +689,15 @@ span.round-tabs.five {
 }
 
 
+/* boostrapTable toolbar buttons
+------------------------------------------*/
+
+.btn-secondary {
+    color: #fff !important;
+    background-color: #03591e !important;
+}
+
+
 
 /*	WHY LOVE
 ------------------------------*/

@@ -4,7 +4,7 @@ import pandas as pd
 
 def home(request):
 	client = Socrata('www.datos.gov.co', 'k25EB69oNekTcnbXvrgklJRQn')
-	capturas = client.get('qa6k-wzms')
+	capturas = client.get('qa6k-wzms', limit=1000)
 	data_frame = pd.DataFrame(capturas)
 	json = data_frame.to_json(orient='records')
 

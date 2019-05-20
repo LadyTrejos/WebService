@@ -99,22 +99,24 @@ h5{
 }
 p{
 font-family: 'Open Sans', sans-serif;
+font-size: 1.2em;
 }
 
 
 a{ 
   text-decoration: none !important;
+  font-weight: bold;
   transition:all 0.3s linear;
   -webkit-transition:all 0.3s linear;
   -moz-transition:all 0.3s linear;
   -ms-transition:all 0.3s linear;
    -o-transition:all 0.3s linear;
-   color:#222;
+   color:#2bf270;
   
 }
 a:hover
 {
-    color:#000;
+    color:#03591e;
 }
 ul
 {

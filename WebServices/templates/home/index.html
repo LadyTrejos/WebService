@@ -9,297 +9,221 @@
     {% load static from staticfiles %}
     
     <!-- [ FONT-AWESOME ICON ] 
-        =========================================================================================================================-->
+    =========================================================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'library/fontawesome-5.8.2/css/all.css' %}">
 
     <!-- [ PLUGIN STYLESHEET ]
-        =========================================================================================================================-->
+    =========================================================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/magnific-popup.css' %}">
     <link rel ="stylesheet" type="text/css" href="{% static 'library/vegas/vegas.min.css' %}">
     
     <!-- [ Boot STYLESHEET ]
-        =========================================================================================================================-->
+    =========================================================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'library/bootstrap/css/bootstrap-theme.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'library/bootstrap/css/bootstrap.css' %}">
         
-        <!-- [ DEFAULT STYLESHEET ] 
-        =========================================================================================================================-->
+    <!-- [ DEFAULT STYLESHEET ] 
+    =========================================================================================================================-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/color/green.css' %}">
 
-    <!-- Boostrap-table --->
+    <!-- [ Boostrap-table ]
+    ==============================================================================================================================-->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
-        
+
+    <!-- [ Bokeh stylesheets ]
+    =================================================================================================================================-->
+    <link rel="stylesheet" type="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.1.0.min.css">
+    <link rel="stylesheet" type="text/css" href="http://cdn.pydata.org/bokeh/release/bokeh-tables-1.1.0.min.css">
 </head>
 <body >
 <!-- [ LOADERs ]
 ================================================================================================================================--> 
     <div class="preloader">
-    <div class="loader">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</div>
-<!-- [ /PRELOADER ]
-=============================================================================================================================-->
-<!-- [WRAPPER ]
-=============================================================================================================================-->
-<div class="wrapper">
-    
- <!-- [NAV]
- ============================================================================================================================-->    
-   <!-- Navigation
-    ==========================================-->
-    <nav  class="amd-menu navbar navbar-default navbar-fixed-top theme_background_color fadeInDown">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <a class="navbar-brand">Capturas<span class="black">Colombia</span></a>
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#home" class="page-scroll">Home</a></li>
-            <li><a href="#descripcion" class="page-scroll">Descripción</a></li>
-            <li><a href="#analiza" class="page-scroll">Analiza</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-
-
-   <!-- [/NAV]
- ============================================================================================================================-->    
-    
-    
-    
-    
-    
-  <!-- [Home]
-=============================================================================================================================-->
-  <section class="main-gallery" id="home">
-    <div class="overlay">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-12 text-center">
-                 <h1 class="text-capitalize bigFont" data-scroll-reveal="wait 0.45s, then enter top and move 80px over 1s">Analiza los datos</h1>
-
-                <p class="intro" data-scroll-reveal="wait 0.45s, then enter left and move 80px over 1s">Descubre, Consulta y Visualiza.</p>
-              </div>
-              
-              <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
-                        <div class="text-center top40">
-                            <a href="https://www.datos.gov.co/" target="_blank" class=" btn btns theme_background_color white fadeInLeft">Datos Abiertos</a>
-                        </div>
-                    </div> 
-          </div>
-      </div>
     </div>
-  </section>
-  
-  
-  <!-- [/Home]
-=============================================================================================================================-->
-  
-<!-- [Descripción]
-=============================================================================================================================-->
-  
-  <section class="mobile-app theme_background_color" id="descripcion">
-      <div class="container">
-            <div class="row text-center">
-                <div class="WhyLove-heading text-center">
+    <!-- [ /PRELOADER ]
+        =============================================================================================================================-->
+
+
+        <!-- [WRAPPER ]
+        =============================================================================================================================-->
+        <div class="wrapper">
+
+
+        <!-- [NAV]
+        ============================================================================================================================-->    
+
+        <!-- Navigation
+        ==========================================-->
+        <nav  class="amd-menu navbar navbar-default navbar-fixed-top theme_background_color fadeInDown">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand">Capturas<span class="black">Colombia</span></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#home" class="page-scroll">Home</a></li>
+                        <li><a href="#descripcion" class="page-scroll">Descripción</a></li>
+                        <li><a href="#visualizacion" class="page-scroll">Visualización</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <!-- [/NAV]
+        ============================================================================================================================-->
+
+
+        <!-- [Home]
+        =============================================================================================================================-->
+        <section class="main-gallery" id="home">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1 class="text-capitalize bigFont" data-scroll-reveal="wait 0.45s, then enter top and move 80px over 1s">Analiza los datos</h1>
+
+                            <p class="intro" data-scroll-reveal="wait 0.45s, then enter left and move 80px over 1s">Descubre, Consulta y Visualiza.</p>
+                        </div>
+
+                        <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+                            <div class="text-center top40">
+                                <a href="https://www.datos.gov.co/" target="_blank" class=" btn btns theme_background_color white fadeInLeft">Datos Abiertos</a>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- [/Home]
+        =============================================================================================================================-->
+
+
+        <!-- [Descripción]
+        =============================================================================================================================-->
+        <section class="mobile-app theme_background_color" id="descripcion">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="WhyLove-heading text-center">
                         <h2 class="sectionTitle">Descripción del conjunto de datos</h2>
-                </div>
-                <div class="row">
-                    <div class="col-md-8" style="text-align: left;">
-                        <p>
-                            Los datos que se incluyen y tratan en este sitio web pertenecen al conjunto de datos capturas (correspondiente al año 2018) proporcionado y mantenido por la dirección general de la Policía Nacial de Colombia.
-                        </p>
-                        <p>
-                            El conjunto de datos <a href="https://www.datos.gov.co/Seguridad-y-Defensa/Capturas-2018/qa6k-wzms" target="_blank">Capturas2018</a> se encuentra disponible en la página web de datos abiertos de Colombia. Este conjunto posee 226.000 registros con 17 diferentes columnas que presentan datos sobre el tipo de délito, el lugar, la edad del capturado, escolaridad y demás.
-                        </p>
-                        <p>
-                            En la tabla de abajo se pueden ver los registros de las diferentes capturas. Si se desea es posible ordenar los datos o buscar registros, para esto solo es necesario escribir en el cuadro de búsqueda y el sistema mostrará los registros que coincidan en alguna de sus columnas.
-                        </p>
                     </div>
-                </div>
-                <div style="color: #000;">
-                <table
-                id='dataframe'
-                data-toggle="table"
-                data-height="800"
-                data-locale="es-CL"
-                data-pagination="true"
-                data-search="true"
-                data-page-size="30"
-                data-show-columns="true"
-                data-buttons-class="secondary"
-                data-icon-size="lg"
-                data-icons-prefix="fa"
-                style="color: #fff;">
-                    <thead style="background-color: #03591e; color: #fff !important;">
-                        <tr>
-                            {% for name in data_frame.columns %}
-                                <th data-sortable="true" data-field={{ name }}>{{ name }}</th>
-                            {% endfor %}
-                        </tr>
-                    </thead>
-                </table>
-                </div>
-            </div>
-        </div>
-  </section>
- <!-- [/Descripción]
-=============================================================================================================================-->
- 
-
- 
- <!-- [Analiza]
-=============================================================================================================================-->
- 
- <section class="why-love theme_background_color" id="analiza">
-     <div class="overlay">
-   <div class="container">
-            <div class="row text-center">
-                <div class="WhyLove-heading text-center">
-                    <h2 class="sectionTitle">WHY YOU’LL LOVE</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="WhyLove-icon-box text-center">
-                        <div class="WhyLove-icon">
-                            <span class="themecolor"><i class="fa fa-lightbulb-o" ></i></span>
-                        </div>
-                        <div class="WhyLove-content">
-                            <h4>INTUITIVE</h4>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ducimus.</p>
+                    <div class="row">
+                        <div class="col-md-8" style="text-align: left;">
+                            <p>
+                                Los datos que se incluyen y tratan en este sitio web pertenecen al conjunto de datos capturas (correspondiente al año 2018) proporcionado y mantenido por la dirección general de la Policía Nacial de Colombia.
+                            </p>
+                            <p>
+                                El conjunto de datos <a href="https://www.datos.gov.co/Seguridad-y-Defensa/Capturas-2018/qa6k-wzms" target="_blank">Capturas2018</a> se encuentra disponible en la página web de datos abiertos de Colombia. Este conjunto posee 226.000 registros con 17 diferentes columnas que presentan datos sobre el tipo de délito, el lugar, la edad del capturado, escolaridad y demás.
+                            </p>
+                            <p>
+                                En la tabla de abajo se pueden ver los registros de las diferentes capturas. Si se desea es posible ordenar los datos o buscar registros, para esto solo es necesario escribir en el cuadro de búsqueda y el sistema mostrará los registros que coincidan en alguna de sus columnas.
+                            </p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="WhyLove-icon-box text-center">
-                        <div class="WhyLove-icon">
-                              <span class="themecolor"><i class="fa fa-binoculars"></i></span>
-                        </div>
-                        <div class="WhyLove-content">
-                            <h4>VERY FAST</h4>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ducimus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="WhyLove-icon-box text-center">
-                        <div class="WhyLove-icon">
-                              <span class="themecolor"><i class="fa fa-adjust"></i></span>
-                        </div>
-                        <div class="WhyLove-content">
-                            <h4>CUSTOMIZABLE</h4>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ducimus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="WhyLove-icon-box padding-top30 text-center">
-                        <div class="WhyLove-icon">
-                             <span class="themecolor"><i class="fa fa-laptop"></i></span>
-                        </div>
-                        <div class="WhyLove-content">
-                            <h4>BOOTSTRAP 3.2</h4>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ducimus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="WhyLove-icon-box padding-top30 text-center">
-                        <div class="WhyLove-icon">
-                              <span class="themecolor"><i class="fa fa-mobile-phone"></i></span>
-                        </div>
-                        <div class="WhyLove-content">
-                            <h4>FULLY RESPONSIVE</h4>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ducimus.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="WhyLove-icon-box padding-top30 text-center">
-                        <div class="WhyLove-icon">
-                             <span class="themecolor"><i class="fa fa-eye-slash"></i></span>
-                        </div>
-                        <div class="WhyLove-content">
-                            <h4>RETINA READY</h4>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ducimus.</p>
-                        </div>
+                    <div style="color: #000;">
+                        <table
+                        id='dataframe'
+                        data-toggle="table"
+                        data-height="800"
+                        data-locale="es-CL"
+                        data-pagination="true"
+                        data-search="true"
+                        data-page-size="30"
+                        data-show-columns="true"
+                        data-buttons-class="secondary"
+                        data-icon-size="lg"
+                        data-icons-prefix="fa"
+                        style="color: #fff;">
+                            <thead style="background-color: #03591e; color: #fff !important;">
+                                <tr>
+                                    {% for name in data_frame.columns %}
+                                        <th data-sortable="true" data-field={{ name }}>{{ name }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
-        </div>  
-     
-     </div>
-     
- </section>
- <!-- [/Analiza]
-=============================================================================================================================-->
- 
- 
- <!-- [Footer]
-=============================================================================================================================-->
- <footer class="footer">
-  
-                    <div class="container">
-                        <div class="footer-info col-md-12 text-center">
-                            <ul>
-                                <li><a href="#">mauricio.castano@utp.edu.co</a></li>
-                                <li><a href="#">ladytrejos@utp.edu.co</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-info col-md-12 text-center">
-                            <ul>
-                                <li><a href="#">Repositorio del proyecto</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-social-icons col-md-12 text-center">
-                            <ul>
-                                <li><a href="https://github.com/LadyTrejos/WebService" target="_blank"><i class="fab fa-github">    </i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                  
-     
-     
- </footer>
- 
- <section class="sub-footer">
-                    <div class="container">
-                        <div class="copyright-text col-md-6 col-sm-6 col-xs-12">
-                            <p>© 2019 CapturasColombia. All rights reserved.</p>
-                        </div>
-                    </div>
-                </section>
- 
- <!-- [/footer]
-=============================================================================================================================-->
-</div>
+        </section>
+        <!-- [/Descripción]
+        =============================================================================================================================-->
 
-<!-- [ /WRAPPER ]
-=============================================================================================================================-->
+
+        <!-- [Visualización]
+        =============================================================================================================================-->
+        <section class="why-love theme_background_color" id="visualizacion">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="WhyLove-heading text-center">
+                            <h2 class="sectionTitle">Visualización y Análisis de los datos</h2>
+                        </div>
+                    </div>
+                    <!-- Bokeh div -->
+                    {{ bokehDiv|safe }}          
+                </div>
+            </div>
+        </section>
+        <!-- [/Visualización]
+        =============================================================================================================================-->
+
+
+        <!-- [Footer]
+        =============================================================================================================================-->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-info col-md-12 text-center">
+                    <ul>
+                        <li><a href="#">mauricio.castano@utp.edu.co</a></li>
+                        <li><a href="#">ladytrejos@utp.edu.co</a></li>
+                    </ul>
+                </div>
+                <div class="footer-info col-md-12 text-center">
+                    <ul>
+                        <li><a href="#">Repositorio del proyecto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social-icons col-md-12 text-center">
+                    <ul>
+                        <li><a href="https://github.com/LadyTrejos/WebService" target="_blank"><i class="fab fa-github">    </i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <section class="sub-footer">
+            <div class="container">
+                <div class="copyright-text col-md-6 col-sm-6 col-xs-12">
+                    <p>© 2019 CapturasColombia. All rights reserved.</p>
+                </div>
+            </div>
+        </section>
+        <!-- [/footer]
+        =============================================================================================================================-->
+    </div>
+    <!-- [ /WRAPPER ]
+    =============================================================================================================================-->
+
 
     <!-- [ DEFAULT SCRIPT ] -->
     <script src="{% static 'library/modernizr.custom.97074.js' %}"></script>
@@ -309,12 +233,20 @@
     <script src="{% static 'library/vegas/vegas.min.js' %}"></script>
     <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table-locale-all.min.js"></script>
+
+    <!-- [ Bokeh scripts ] -->
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js"></script>
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.1.0.min.js"></script>
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-tables-1.1.0.min.js"></script>
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-api-1.1.0.min.js"></script>
     
     <!-- [ PLUGIN SCRIPT ] -->    
     <script src="{% static 'js/plugins.js' %}"></script>
-        <script src="{% static 'js/fappear.js' %}"></script>
-       <script src="{% static 'js/jquery.countTo.js' %}"></script>
+    <script src="{% static 'js/fappear.js' %}"></script>
+    <script src="{% static 'js/jquery.countTo.js' %}"></script>
     <script src="{% static 'js/scrollreveal.js' %}"></script>
+    
+    <!-- Boostrap table definition -->
     <script>
         $('#dataframe').bootstrapTable({
             "data": {{ json|safe }},
@@ -322,7 +254,10 @@
             "icons":{columns:'fa-th-list'},
         })
     </script>
-    
+
+    <!-- Bokeh script sended from django view -->
+    {{ bokehScript|safe }}
+
     <!-- [ COMMON SCRIPT ] -->
     <script src="{% static 'js/common.js' %}"></script>
 </body>

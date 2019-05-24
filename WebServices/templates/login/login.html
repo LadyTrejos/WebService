@@ -4,17 +4,17 @@
     {% block title %} Iniciar sesión {% endblock %}
     {% block content %}
     <div class="row">
-        <div class="col-md-4 mx-auto social-container my-2 order-md-1">
-            <h1> Iniciar sesión </h1>
-            <a class="btn btn-primary btn-block" href="{% url 'social:begin' 'facebook' %}" role="button">
+        <div class="col-md-10 mx-auto social-container my-2 order-md-1">
+            
+            <a class="btn btn-primary btn-block mb-2" href="{% url 'social:begin' 'facebook' %}" role="button">
                 <i class="fab fa-facebook-f"></i>
                 Iniciar con Facebook
             </a>
-            <a class="btn btn-info btn-block" href="{% url 'social:begin' 'instagram' %}" role="button">
+            <a class="btn btn-info btn-block mb-2" href="{% url 'social:begin' 'instagram' %}" role="button">
                 <i class="fab fa-instagram"></i>
                 Iniciar con Instagram
             </a>
-            <a class="btn btn-danger btn-block" href="{% url 'social:begin' 'google-oauth2' %}" role="button">
+            <a class="btn btn-danger btn-block mb-2" href="{% url 'social:begin' 'google-oauth2' %}" role="button">
                 <i class="fab fa-google"></i>
                 Iniciar con Google
             </a>

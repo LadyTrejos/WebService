@@ -6,7 +6,7 @@ SECRET_KEY = '^j(^)vvh7dm^m)=md0!ecznlh@50tka(b&+%*!(p**%(25v)q#'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -21,11 +21,12 @@ DJANGO_APPS = (
 )
 
 THIRD_PARTY_APPS = (
-
+    'social_django',
 )
 
 LOCAL_APPS = (
     'apps.home',
+    'apps.login',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -38,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'WebServices.urls'
@@ -53,6 +55,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -66,12 +70,10 @@ WSGI_APPLICATION = 'WebServices.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'djongo',
         'NAME': 'djangosocrata',
-        'USER': 'postgres',
-        'PASSWORD': 'pass',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': 27017,
     }
 }
 
@@ -106,3 +108,43 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 STATIC_URL = '/static/'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.instagram.InstagramOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+SOCIAL_AUTH_LOGIN_URL = 'login'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'home'
+SOCIAL_AUTH_LOGOUT_REDIRECT_URL = 'login'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '654582745012785'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'da1ee441ede16b29e60c3fbbdab28da7'
+
+SOCIAL_AUTH_INSTAGRAM_KEY = '3ac11533c0dd469cb3d2d261d91ba716'         
+SOCIAL_AUTH_INSTAGRAM_SECRET = '4dc26c4f6264452e96018c25192ebc41'  
+SOCIAL_AUTH_INSTAGRAM_EXTRA_DATA = [('user', 'user'),]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '560475550738-pmdjsqs2178650fc95l60f5i9iren57a.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'JF94Enc4HoYzXpXxBC2EeBfb'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email'] 
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {       
+    'fields': 'id, name, email, link'
+}
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                
+        ('name', 'name'),
+        ('email', 'email'),
+        ('link', 'profile_url'),
+    ]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile'
+]

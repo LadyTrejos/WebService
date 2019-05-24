@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=devidev-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CapturasColombia</title>
+    <title>Capturas Colombia</title>
 
     {% load static from staticfiles %}
     
@@ -83,7 +83,9 @@
                         <li><a href="#home" class="page-scroll">Inicio</a></li>
                         <li><a href="#descripcion" class="page-scroll">Descripción</a></li>
                         <li><a href="#visualizacion" class="page-scroll">Visualización</a></li>
+                        <li><a class="btn btn-danger" href="{% url 'logout' %}" role="button">Cerrar sesión</a>
                     </ul>
+                    
                 </div>
                 <!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -102,7 +104,7 @@
                         <div class="col-md-12 text-center">
                             <h1 class="text-capitalize bigFont" data-scroll-reveal="wait 0.45s, then enter top and move 80px over 1s">Analiza los datos</h1>
 
-                            <p class="intro" data-scroll-reveal="wait 0.45s, then enter left and move 80px over 1s">Descubre, Consulta y Visualiza.</p>
+                            <p class="intro" data-scroll-reveal="wait 0.45s, then enter left and move 80px over 1s">Descubre, consulta y visualiza.</p>
                         </div>
 
                         <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
@@ -214,7 +216,7 @@
         <section class="sub-footer">
             <div class="container">
                 <div class="copyright-text col-md-6 col-sm-6 col-xs-12">
-                    <p>© 2019 CapturasColombia. All rights reserved.</p>
+                    <p>© 2019 CapturasColombia. Todos los derechos reservados.</p>
                 </div>
             </div>
         </section>

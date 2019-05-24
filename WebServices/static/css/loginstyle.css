@@ -1,0 +1,28 @@
+
+/* Estilos del login */
+
+.container-fluid {
+    height: 100vh;
+    background-color: #257525;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.container-fluid > div {
+    width: 90%;
+    min-width: 300px;
+    max-width: 500px;
+}
+.card {
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+.social-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.btn a, .btn a:hover {
+    color: white;
+    text-decoration: none;
+}

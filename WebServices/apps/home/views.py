@@ -1,11 +1,19 @@
 from django.shortcuts import render
 from sodapy import Socrata
 import pandas as pd
-from bokeh.plotting import figure
 from bokeh.models import ColumnDataSource
+from bokeh.layouts import row, column
+from bokeh.models import Select
 from bokeh.palettes import BuGn
 from bokeh.transform import factor_cmap
+from bokeh.plotting import figure
 from bokeh.embed import components
+
+def update_plot():
+	pass
+
+def update(attr, old, new):
+	layout.children[1] = update_plot()
 
 def home(request):
 	# Obtaining the dataset
@@ -37,6 +45,11 @@ def home(request):
 	# Extracting the records
 	json = capturas.to_json(orient='records')
 
+	# Creating the select widget for change the displayed plot
+	select = Select(title='Escoge una gráfica', value='barras', 
+		options=['barras', 'histograma'])
+	select.on_change('value', update)
+
 	# Creating group generos for the categorical plot
 	generos = pd.DataFrame(capturas.groupby('Genero')['Cantidad'].count())
 
@@ -49,7 +62,12 @@ def home(request):
 	color_map = factor_cmap(field_name='Genero', palette=BuGn[4], factors=lista_generos)
 	plot.vbar(x='Genero', top='Cantidad', source=source, width=0.4, color=color_map)
 
-	script, div = components(plot)
+
+	# Creating the layout to be displayed
+	controles = column([select], width=200)
+	layout = row(controles, plot)
+
+	script, div = components(layout)
 
 	return render(request, 'home/index.html', 
 		{

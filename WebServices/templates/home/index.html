@@ -53,6 +53,17 @@
     <!-- [ /PRELOADER ]
         =============================================================================================================================-->
 
+    <!-- [ WELCOME MODAL ]
+        =============================================================================================================================-->
+    <div class="modal fade" id="welcomeModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h1 class="text-center" style="color:green">Bienvenid@   {{ user.username }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 
         <!-- [WRAPPER ]
         =============================================================================================================================-->
@@ -83,7 +94,10 @@
                         <li><a href="#home" class="page-scroll">Inicio</a></li>
                         <li><a href="#descripcion" class="page-scroll">Descripción</a></li>
                         <li><a href="#visualizacion" class="page-scroll">Visualización</a></li>
-                        <li><a class="btn btn-danger" href="{% url 'logout' %}" role="button">Cerrar sesión</a>
+                        <li><a class="btn btn-danger btn-sm" href="{% url 'logout' %}" role="button" >
+                            Cerrar sesión
+                            </a>
+                        </li>
                     </ul>
                     
                 </div>
@@ -178,7 +192,7 @@
                 <div class="container">
                     <div class="row text-center" style="color: #000;">
                         <div class="WhyLove-heading text-center">
-                            <h2 class="sectionTitle">Visualización y Análisis de los datos</h2>
+                            <h2 class="sectionTitle">Visualización y análisis de los datos</h2>
                         </div>
                     <!-- Bokeh div -->
                     {{ bokehDiv|safe }}
@@ -230,6 +244,7 @@
     <!-- [ DEFAULT SCRIPT ] -->
     <script src="{% static 'library/modernizr.custom.97074.js' %}"></script>
     <script src="{% static 'library/jquery-1.11.3.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="{% static 'library/bootstrap/js/bootstrap.js' %}"></script>
     <script type="text/javascript" src="{%static 'js/jquery.easing.1.3.js' %}"></script>
     <script src="{% static 'library/vegas/vegas.min.js' %}"></script>
@@ -247,8 +262,14 @@
     <script src="{% static 'js/fappear.js' %}"></script>
     <script src="{% static 'js/jquery.countTo.js' %}"></script>
     <script src="{% static 'js/scrollreveal.js' %}"></script>
+
+    <!-- [ WELCOME MODAL ] -->
+    <script>
+        $('#welcomeModal').modal('show');
+        setTimeout(function() {$('#welcomeModal').modal('hide');}, 3000);
+    </script>
     
-    <!-- Boostrap table definition -->
+    <!-- Bootstrap table definition -->
     <script>
         $('#dataframe').bootstrapTable({
             "data": {{ json|safe }},

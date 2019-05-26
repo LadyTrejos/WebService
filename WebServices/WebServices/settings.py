@@ -70,10 +70,12 @@ WSGI_APPLICATION = 'WebServices.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'djangosocrata',
+        'USER': 'postgres',
+        'PASSWORD': 'pass',
         'HOST': 'localhost',
-        'PORT': 27017,
+        'PORT': '',
     }
 }
 

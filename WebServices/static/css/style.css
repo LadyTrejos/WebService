@@ -700,6 +700,17 @@ span.round-tabs.five {
 }
 
 
+/* classes for the Select widget of Bokeh 
+--------------------------------------------*/
+
+.select {
+    color: #000;
+}
+.select>div>label {
+    color: #fff;
+}
+
+
 
 /*	WHY LOVE
 ------------------------------*/

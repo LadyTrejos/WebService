@@ -2,12 +2,30 @@ from django.shortcuts import render
 from sodapy import Socrata
 import numpy as np
 import pandas as pd
-from bokeh.models import ColumnDataSource, CustomJS,Select
+from bokeh.models import ColumnDataSource, CustomJS,Select, FactorRange
 from bokeh.layouts import row, column
 from bokeh.palettes import BuGn
 from bokeh.transform import factor_cmap
 from bokeh.plotting import figure
 from bokeh.embed import components
+
+def categorical_plot(df, colname, title, xlabel, num_cats, x_orientation):
+	# Creating group for the categorical plot
+	cat_ranges = df[colname].unique()  # For the x_range and the color map
+	categories = pd.DataFrame(df.groupby([colname])['Cantidad'].count())
+
+	# Creating the source data for Bokeh
+	source = ColumnDataSource(categories)
+
+	# Creating the genres plot (Categorical)
+	catPlot = figure(x_range=cat_ranges, title=title, x_axis_label=xlabel, 
+		y_axis_label='Cantidad', plot_height=400, plot_width=600, background_fill_color='#fafafa')
+	color_map = factor_cmap(field_name=colname, palette=BuGn[num_cats], factors=cat_ranges)
+	catPlot.vbar(x=colname, top='Cantidad', source=source, width=0.4, color=color_map)
+	catPlot.y_range.start = 0
+	catPlot.xaxis.major_label_orientation = x_orientation
+
+	return catPlot
 
 
 def home(request):
@@ -43,40 +61,63 @@ def home(request):
 	# Extracting the records
 	json = capturas.to_json(orient='records')
 
-	# Creating group generos for the categorical plot
-	generos = pd.DataFrame(capturas.groupby('Genero')['Cantidad'].count())
+	# Creating the categorical plots
 
-	# Creating the source data for Bokeh
-	source = ColumnDataSource(generos)
-	lista_generos = source.data['Genero'].tolist()
-
-	# Creating the genres plot (Categorical)
-	catGeneros = figure(x_range=lista_generos, title='Cantidad de Delitos por Genero', x_axis_label='Generos', 
-		y_axis_label='Cantidad', plot_height=400)
-	color_map = factor_cmap(field_name='Genero', palette=BuGn[4], factors=lista_generos)
-	catGeneros.vbar(x='Genero', top='Cantidad', source=source, width=0.4, color=color_map)
+	catGeneros = categorical_plot(capturas, 'Genero', 'Cantidad de Delitos por Genero', 'Generos', 3, 0)
+	catZona = categorical_plot(capturas, 'Zona', 'Cantidad de Delitos por Zona', 'Zona', 3, 0)
+	catDepartamento = categorical_plot(capturas, 'Departamento', 'Cantidad de Delitos por Departamento', 
+		'Departamento', 7, 1)
+	catEstadoCivil = categorical_plot(capturas, 'Estado_Civil', 'Cantidad de Delitos por Estado Civil', 
+		'Estado Civil', 4, 0)
+	catEmpleado = categorical_plot(capturas, 'Clase_de_Empleado', 'Cantidad de Delitos por Clase de Empleado', 
+		'Clase de Empleado', 6, 1)
+	catClaseSitio = categorical_plot(capturas, 'Clase_de_Sitio', 'Cantidad de Delitos por Clase de Sitio', 
+		'Clase de Sitio', 8, 1)
+	catDelito = categorical_plot(capturas, 'Delito', 'Cantidad de Delitos por Delito', 'Delito', 7, 1)
 
 	# Creating the histogram plot for Edad
 	hist, edges = np.histogram(capturas.Edad.dropna(), bins=10)
 
 	histEdad = figure(title='Distribución de edades', x_axis_label='Edades', y_axis_label='Cantidad', 
-		plot_height=400, background_fill_color='#fafafa')
+		plot_height=400, plot_width=600, background_fill_color='#fafafa')
 	histEdad.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], color='navy', line_color='white', alpha=0.6)
+	histEdad.y_range.start = 0
 
 	# Creating the select widget for change the displayed plot
-	select = Select(title='Escoge una gráfica', value='barras', 
-		options=['barras', 'histograma'])
+	options = ['genero', 'empleado', 'estado civil', 'zona', 'departamento', 'delito', 'sitio', 'edad']
+	select = Select(title='Escoge una variable', value='barras', options=options, margin=30, 
+		css_classes=['select'])
 
 	# Creating the layout to be displayed
 	controles = column([select], width=200)
 	layout = row(controles, catGeneros)
 
 	# Creating the CustomJS function to update the plot
-	update = CustomJS(args=dict(layout=layout, catGeneros=catGeneros, histEdad=histEdad), code="""
-			if (cb_obj.value == 'barras') {
+	update = CustomJS(args=dict(layout=layout, catGeneros=catGeneros, catEmpleado=catEmpleado, 
+	catEstadoCivil=catEstadoCivil, catZona=catZona, catDepartamento=catDepartamento, 
+	catDelito=catDelito, catClaseSitio=catClaseSitio, histEdad=histEdad), code="""
+			if (cb_obj.value == 'genero') {
 				layout.children = [layout.children[0], catGeneros];
 			}
-			if (cb_obj.value == 'histograma') {
+			if (cb_obj.value == 'empleado') {
+				layout.children = [layout.children[0], catEmpleado];
+			}
+			if (cb_obj.value == 'estado civil') {
+				layout.children = [layout.children[0], catEstadoCivil];
+			}
+			if (cb_obj.value == 'zona') {
+				layout.children = [layout.children[0], catZona];
+			}
+			if (cb_obj.value == 'departamento') {
+				layout.children = [layout.children[0], catDepartamento];
+			}
+			if (cb_obj.value == 'delito') {
+				layout.children = [layout.children[0], catDelito];
+			}
+			if (cb_obj.value == 'sitio') {
+				layout.children = [layout.children[0], catSitio];
+			}
+			if (cb_obj.value == 'edad') {
 				layout.children = [layout.children[0], histEdad]
 			}
 		""")

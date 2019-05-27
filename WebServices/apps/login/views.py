@@ -12,4 +12,4 @@ def home(request):
 def logout(request):
     """Logs out user"""
     auth_logout(request)
-    return redirect('/login/')
+    return redirect('/')

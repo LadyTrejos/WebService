@@ -21,7 +21,7 @@ from apps.home import views as home
 urlpatterns = [
 	path('home/', home.home, name='home'),
     path('admin/', admin.site.urls),
-    path("login/", views.login, name="login"),
+    path("", views.login, name="login"),
     path("logout/", views.logout, name="logout"),
     path("home/", views.home, name="home"),
     # Python social auth

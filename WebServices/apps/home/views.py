@@ -31,7 +31,7 @@ def categorical_plot(df, colname, title, xlabel, num_cats, x_orientation):
 def home(request):
 	# Obtaining the dataset
 	client = Socrata('www.datos.gov.co', 'k25EB69oNekTcnbXvrgklJRQn')
-	capturas = client.get('qa6k-wzms', limit=1000)
+	capturas = client.get('qa6k-wzms', limit=200000)
 	
 	# Creating the data frame and the json for the boostrap table
 	capturas = pd.DataFrame(capturas)
@@ -54,6 +54,7 @@ def home(request):
 
 	# Eliminating the columns with many NAN values
 	capturas.drop(['Profesion', 'Escolaridad'], axis=1, inplace=True)
+	capturas.dropna(inplace=True)
 
 	# Adjusting the data types
 	capturas.Edad = capturas.Edad.astype('int')
@@ -76,26 +77,40 @@ def home(request):
 	catDelito = categorical_plot(capturas, 'Delito', 'Cantidad de Delitos por Delito', 'Delito', 7, 1)
 
 	# Creating the histogram plot for Edad
-	hist, edges = np.histogram(capturas.Edad.dropna(), bins=10)
+	hist, edges = np.histogram(capturas.Edad.dropna(), bins=30)
 
 	histEdad = figure(title='Distribución de edades', x_axis_label='Edades', y_axis_label='Cantidad', 
 		plot_height=400, plot_width=600, background_fill_color='#fafafa')
-	histEdad.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], color='navy', line_color='white', alpha=0.6)
+	histEdad.quad(top=hist, bottom=0, left=edges[:-1], right=edges[1:], color='seagreen', line_color='white')
 	histEdad.y_range.start = 0
 
+	# Creating the time series plot for the quantify
+	capturas['Fecha'] = pd.to_datetime(capturas['Fecha'], format='%Y-%m-%d')
+	porFecha = capturas.groupby(['Fecha']).count()
+
+	source = ColumnDataSource(porFecha)
+
+	timeSeriesDistribution = figure(x_axis_type='datetime', title='Distribución de la cantidad de Delitos en el año', 
+		y_axis_label='Cantidad', plot_height=400, plot_width=600, background_fill_color='#fafafa')
+	timeSeriesDistribution.line(x='Fecha', y='Edad', line_width=2, source=source, color='darkolivegreen')
+
 	# Creating the select widget for change the displayed plot
-	options = ['genero', 'empleado', 'estado civil', 'zona', 'departamento', 'delito', 'sitio', 'edad']
+	options = ['distribución', 'genero', 'empleado', 'estado civil', 'zona', 'departamento', 'delito', 'sitio', 'edad']
 	select = Select(title='Escoge una variable', value='barras', options=options, margin=30, 
 		css_classes=['select'])
 
 	# Creating the layout to be displayed
 	controles = column([select], width=200)
-	layout = row(controles, catGeneros)
+	layout = row(controles, timeSeriesDistribution)
 
 	# Creating the CustomJS function to update the plot
-	update = CustomJS(args=dict(layout=layout, catGeneros=catGeneros, catEmpleado=catEmpleado, 
-	catEstadoCivil=catEstadoCivil, catZona=catZona, catDepartamento=catDepartamento, 
-	catDelito=catDelito, catClaseSitio=catClaseSitio, histEdad=histEdad), code="""
+	update = CustomJS(args=dict(layout=layout, timeSeriesDistribution=timeSeriesDistribution, 
+		catGeneros=catGeneros, catEmpleado=catEmpleado, catEstadoCivil=catEstadoCivil, catZona=catZona, 
+		catDepartamento=catDepartamento, catDelito=catDelito, catClaseSitio=catClaseSitio, 
+		histEdad=histEdad), code="""
+			if (cb_obj.value == 'distribución') {
+				layout.children = [layout.children[0], timeSeriesDistribution];
+			}
 			if (cb_obj.value == 'genero') {
 				layout.children = [layout.children[0], catGeneros];
 			}
@@ -115,7 +130,7 @@ def home(request):
 				layout.children = [layout.children[0], catDelito];
 			}
 			if (cb_obj.value == 'sitio') {
-				layout.children = [layout.children[0], catSitio];
+				layout.children = [layout.children[0], catClaseSitio];
 			}
 			if (cb_obj.value == 'edad') {
 				layout.children = [layout.children[0], histEdad]

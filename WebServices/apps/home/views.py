@@ -31,7 +31,7 @@ def categorical_plot(df, colname, title, xlabel, num_cats, x_orientation):
 def home(request):
 	# Obtaining the dataset
 	client = Socrata('www.datos.gov.co', 'k25EB69oNekTcnbXvrgklJRQn')
-	capturas = client.get('qa6k-wzms', limit=200000)
+	capturas = client.get('qa6k-wzms', limit=10000)
 	
 	# Creating the data frame and the json for the boostrap table
 	capturas = pd.DataFrame(capturas)
@@ -64,7 +64,7 @@ def home(request):
 
 	# Creating the categorical plots
 
-	catGeneros = categorical_plot(capturas, 'Genero', 'Cantidad de Delitos por Genero', 'Generos', 3, 0)
+	catGeneros = categorical_plot(capturas, 'Genero', 'Cantidad de delitos por género', 'Generos', 3, 0)
 	catZona = categorical_plot(capturas, 'Zona', 'Cantidad de Delitos por Zona', 'Zona', 3, 0)
 	catDepartamento = categorical_plot(capturas, 'Departamento', 'Cantidad de Delitos por Departamento', 
 		'Departamento', 7, 1)
@@ -77,7 +77,7 @@ def home(request):
 	catDelito = categorical_plot(capturas, 'Delito', 'Cantidad de Delitos por Delito', 'Delito', 7, 1)
 
 	# Creating the histogram plot for Edad
-	hist, edges = np.histogram(capturas.Edad.dropna(), bins=30)
+	hist, edges = np.histogram(capturas.Edad.dropna(), bins=30, range=(10,85))
 
 	histEdad = figure(title='Distribución de edades', x_axis_label='Edades', y_axis_label='Cantidad', 
 		plot_height=400, plot_width=600, background_fill_color='#fafafa')
@@ -90,7 +90,7 @@ def home(request):
 
 	source = ColumnDataSource(porFecha)
 
-	timeSeriesDistribution = figure(x_axis_type='datetime', title='Distribución de la cantidad de Delitos en el año', 
+	timeSeriesDistribution = figure(x_axis_type='datetime', title='Distribución de la cantidad de delitos en el año', 
 		y_axis_label='Cantidad', plot_height=400, plot_width=600, background_fill_color='#fafafa')
 	timeSeriesDistribution.line(x='Fecha', y='Edad', line_width=2, source=source, color='darkolivegreen')
 
